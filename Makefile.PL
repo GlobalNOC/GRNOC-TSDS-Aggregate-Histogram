@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 
 sub MY::postamble { <<'END'; }
 rpm:	dist
-	rpmbuild -ta perl-GRNOC-TSDS-Aggregate-Histogram-$(VERSION).tar.gz
+	rpmbuild -ta GRNOC-TSDS-Aggregate-Histogram-$(VERSION).tar.gz
 END
 
 sub MY::test
@@ -31,4 +31,4 @@ WriteMakefile( NAME => 'GRNOC::TSDS::Aggregate::Histogram',
 			     'XSLoader' => 0},
 	       BUILD_REQUIRES => {'Test::More' => 0},
 	       dist => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-	       clean => { FILES => 'perl-GRNOC-TSDS-Aggregate-Histogram-*' } );
+	       clean => { FILES => 'GRNOC-TSDS-Aggregate-Histogram-*' } );
