@@ -1,0 +1,8 @@
+histogram.c
+histogram.h
+Histogram.xs
+lib/GRNOC/TSDS/Aggregate/Histogram.pm
+Makefile.PL
+MANIFEST			This list of files
+ppport.h
+t/histogram.t
