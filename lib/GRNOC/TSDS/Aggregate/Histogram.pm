@@ -52,10 +52,6 @@ sub new {
     # were we unable to determine an appropriate bin size?
     return if ( !$self->bin_size );
 
-    # Oookay... this part is perl being special. If the arguments
-    # passed in weren't technically numbers it will remember that they were
-    # last used in string context and return strings
-
     # set the total number of bins will be with this bin size, min, and max
     $self->num_bins( int( ( $self->hist_max - $self->hist_min ) / $self->bin_size ) );
 
@@ -86,6 +82,7 @@ sub bins {
         $self->{'total'} = $new_total;
     }
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'bins'}) ? $self->{'bins'} + 0 : $self->{'bins'};
 }
 
@@ -95,6 +92,7 @@ sub bin_size {
 
     $self->{'bin_size'} = $bin_size if ( defined( $bin_size ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'bin_size'}) ? $self->{'bin_size'} + 0 : $self->{'bin_size'};
 }
 
@@ -104,6 +102,7 @@ sub min_width {
 
     $self->{'min_width'} = $min_width if ( defined( $min_width ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'min_width'}) ? $self->{'min_width'} + 0 : $self->{'min_width'};
 }
 
@@ -113,6 +112,7 @@ sub num_bins {
 
     $self->{'num_bins'} = $num_bins if ( defined( $num_bins ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'num_bins'}) ? $self->{'num_bins'} + 0 : $self->{'num_bins'};
 }
 
@@ -122,6 +122,7 @@ sub data_min {
 
     $self->{'data_min'} = $data_min if ( defined( $data_min ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'data_min'}) ? $self->{'data_min'} + 0 : $self->{'data_min'};
 }
 
@@ -131,6 +132,7 @@ sub data_max {
 
     $self->{'data_max'} = $data_max if ( defined( $data_max ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'data_max'}) ? $self->{'data_max'} + 0 : $self->{'data_max'};
 }
 
@@ -140,6 +142,7 @@ sub hist_min {
 
     $self->{'hist_min'} = $hist_min if ( defined( $hist_min ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'hist_min'}) ? $self->{'hist_min'} + 0 : $self->{'hist_min'};
 }
 
@@ -149,6 +152,7 @@ sub hist_max {
 
     $self->{'hist_max'} = $hist_max if ( defined( $hist_max ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'hist_max'}) ? $self->{'hist_max'} + 0 : $self->{'hist_max'};
 }
 
@@ -158,6 +162,7 @@ sub resolution {
 
     $self->{'resolution'} = $resolution if ( defined( $resolution ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'resolution'}) ? $self->{'resolution'} + 0 : $self->{'resolution'};
 }
 
@@ -167,6 +172,7 @@ sub total {
 
     $self->{'total'} = $total if ( defined( $total ) );
 
+    # Make sure we get it in numerical context, yay perl
     return defined($self->{'total'}) ? $self->{'total'} + 0 : $self->{'total'};
 }
 
