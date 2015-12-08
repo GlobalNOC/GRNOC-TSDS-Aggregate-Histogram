@@ -52,6 +52,10 @@ sub new {
     # were we unable to determine an appropriate bin size?
     return if ( !$self->bin_size );
 
+    # Oookay... this part is perl being special. If the arguments
+    # passed in weren't technically numbers it will remember that they were
+    # last used in string context and return strings
+
     # set the total number of bins will be with this bin size, min, and max
     $self->num_bins( int( ( $self->hist_max - $self->hist_min ) / $self->bin_size ) );
 
@@ -82,7 +86,7 @@ sub bins {
         $self->{'total'} = $new_total;
     }
 
-    return $self->{'bins'};
+    return defined($self->{'bins'}) ? $self->{'bins'} + 0 : $self->{'bins'};
 }
 
 sub bin_size {
@@ -91,7 +95,7 @@ sub bin_size {
 
     $self->{'bin_size'} = $bin_size if ( defined( $bin_size ) );
 
-    return $self->{'bin_size'};
+    return defined($self->{'bin_size'}) ? $self->{'bin_size'} + 0 : $self->{'bin_size'};
 }
 
 sub min_width {
@@ -100,7 +104,7 @@ sub min_width {
 
     $self->{'min_width'} = $min_width if ( defined( $min_width ) );
 
-    return $self->{'min_width'};
+    return defined($self->{'min_width'}) ? $self->{'min_width'} + 0 : $self->{'min_width'};
 }
 
 sub num_bins {
@@ -109,7 +113,7 @@ sub num_bins {
 
     $self->{'num_bins'} = $num_bins if ( defined( $num_bins ) );
 
-    return $self->{'num_bins'};
+    return defined($self->{'num_bins'}) ? $self->{'num_bins'} + 0 : $self->{'num_bins'};
 }
 
 sub data_min {
@@ -118,7 +122,7 @@ sub data_min {
 
     $self->{'data_min'} = $data_min if ( defined( $data_min ) );
 
-    return $self->{'data_min'};
+    return defined($self->{'data_min'}) ? $self->{'data_min'} + 0 : $self->{'data_min'};
 }
 
 sub data_max {
@@ -127,7 +131,7 @@ sub data_max {
 
     $self->{'data_max'} = $data_max if ( defined( $data_max ) );
 
-    return $self->{'data_max'};
+    return defined($self->{'data_max'}) ? $self->{'data_max'} + 0 : $self->{'data_max'};
 }
 
 sub hist_min {
@@ -136,7 +140,7 @@ sub hist_min {
 
     $self->{'hist_min'} = $hist_min if ( defined( $hist_min ) );
 
-    return $self->{'hist_min'};
+    return defined($self->{'hist_min'}) ? $self->{'hist_min'} + 0 : $self->{'hist_min'};
 }
 
 sub hist_max {
@@ -145,7 +149,7 @@ sub hist_max {
 
     $self->{'hist_max'} = $hist_max if ( defined( $hist_max ) );
 
-    return $self->{'hist_max'};
+    return defined($self->{'hist_max'}) ? $self->{'hist_max'} + 0 : $self->{'hist_max'};
 }
 
 sub resolution {
@@ -154,7 +158,7 @@ sub resolution {
 
     $self->{'resolution'} = $resolution if ( defined( $resolution ) );
 
-    return $self->{'resolution'};
+    return defined($self->{'resolution'}) ? $self->{'resolution'} + 0 : $self->{'resolution'};
 }
 
 sub total {
@@ -163,7 +167,7 @@ sub total {
 
     $self->{'total'} = $total if ( defined( $total ) );
 
-    return $self->{'total'};
+    return defined($self->{'total'}) ? $self->{'total'} + 0 : $self->{'total'};
 }
 
 ### public methods ###
