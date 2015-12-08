@@ -42,3 +42,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644 ,root, root, -)
 %{perl_vendorarch}/GRNOC/TSDS/Aggregate/Histogram.pm
 %{perl_vendorarch}/auto/GRNOC/TSDS/Aggregate/Histogram/Histogram.so
+%{perl_vendorarch}/auto/GRNOC/TSDS/Aggregate/Histogram/Histogram.bs
