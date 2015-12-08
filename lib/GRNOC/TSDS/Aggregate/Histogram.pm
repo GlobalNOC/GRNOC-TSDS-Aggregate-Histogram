@@ -83,7 +83,7 @@ sub bins {
     }
 
     # Make sure we get it in numerical context, yay perl
-    return defined($self->{'bins'}) ? $self->{'bins'} + 0 : $self->{'bins'};
+    return $self->{'bins'};
 }
 
 sub bin_size {
