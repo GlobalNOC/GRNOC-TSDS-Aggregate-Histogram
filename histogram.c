@@ -43,10 +43,15 @@ int __add_values( double bin_size, double min, int num_bins, SV* bins_ref, SV* v
     
     // get next scalar item from array
     SV** item = av_fetch( values, i, 0 );
-    
+
+    // skip undef values, they don't fit in the histogram
+    if (! SvOK( *item ) ){
+      continue;
+    }
+
     // convert scalar to double
-    double value = SvNV( *item );
-    
+    double value = SvNV( *item );   
+  
     int index = __get_index( bin_size, min, num_bins, value );
     
     // convert index to string for hash key
