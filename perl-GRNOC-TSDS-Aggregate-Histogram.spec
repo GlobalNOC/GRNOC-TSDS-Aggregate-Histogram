@@ -1,5 +1,5 @@
 Name: perl-GRNOC-TSDS-Aggregate-Histogram
-Version: 1.0.0
+Version: 1.0.1
 Release: 1%{?dist}
 Summary: GRNOC TSDS Aggregate Histogram Library
 License: Apache License, Version 2.0
