@@ -251,8 +251,15 @@ sub _init_attribs {
     # determine desired number of bins based upon desired resolution
     my $desired_num_bins = 100 / $self->resolution();
 
+    # If we have say 600Gbps, we want to use a power of 10 multipled by 6
+    # to ensure we maintain a consistent 10 aligned boundary but scale it
+    # accordingly to a 6*bucket size. This gets the multiple of 10 we're looking at
+    # 600 => 6, 1200 => 1, 2000 => 2, 4500 => 4, etc
+    my $mult = 1;
+    $mult = int($range / (10 ** int(log($range) / log(10)))) if ($range >= 1); 
+
     # find the best bin size
-    for ( my $bin_size = MIN_BIN_SIZE; $bin_size < $range; $bin_size *= BIN_MULTIPLE ) {
+    for ( my $bin_size = MIN_BIN_SIZE * $mult; $bin_size < $range; $bin_size *= BIN_MULTIPLE ) {
 
         # round the bins based upon our bin size
         my $start_bin = nlowmult( $bin_size, $min );
