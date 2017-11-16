@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 14;
+use Test::More tests => 20;
 
 use GRNOC::TSDS::Aggregate::Histogram;
 use Data::Dumper;
@@ -55,3 +55,25 @@ is( $bins->{525}, 1, "1 items in bin 525" );
 is( $bins->{875}, 1, "1 items in bin 875" );
 is( $bins->{925}, 1, "1 items in bin 925" );
 is( $bins->{999}, 1, "1 items in bin 999" );
+
+
+
+
+
+
+# create a histogram with an odd natural resolution, ensure that 
+my $hist = GRNOC::TSDS::Aggregate::Histogram->new( hist_min => undef,
+                                                   hist_max => undef,
+                                                   data_min => 0,
+                                                   data_max => $twohundredgbps + $twohundredgbps*2.5, # 7 hundred gbps
+                                                   min_width => 0.001,
+                                                   resolution => $resolution );
+
+
+# verify initial values of histogram
+is( $hist->data_min(), 0, 'data_min' );
+is( $hist->data_max(), $twohundredgbps + $twohundredgbps*2.5, 'data_max' );
+is( $hist->resolution(), 0.1, 'resolution' );
+is( $hist->num_bins(), 1750, 'num_bins' );
+is( $hist->bin_size(), $twohundredgbps / (100 / $resolution) * 2, 'bin_size' ); # bin size should be 400000000, ie best power of 10 * the multipler of nearest cleanly divisible power of 2
+is( $hist->total(), 0, 'total' );

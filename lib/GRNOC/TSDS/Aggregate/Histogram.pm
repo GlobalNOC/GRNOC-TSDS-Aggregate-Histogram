@@ -251,12 +251,21 @@ sub _init_attribs {
     # determine desired number of bins based upon desired resolution
     my $desired_num_bins = 100 / $self->resolution();
 
-    # If we have say 600Gbps, we want to use a power of 10 multipled by 6
-    # to ensure we maintain a consistent 10 aligned boundary but scale it
-    # accordingly to a 6*bucket size. This gets the multiple of 10 we're looking at
-    # 600 => 6, 1200 => 1, 2000 => 2, 4500 => 4, etc
+    # If we have say 600Gbps, we want to use a power of 10 multipled by the nearest
+    # cleanly divisible power of 2 (which is 4 in this example) to ensure we maintain a 
+    # consistent 10 aligned boundary but scaled up accordingly, while also ensuring
+    # that histograms generated from this will be combinable (all powers of 2 are combinable
+    # without edge cases)
     my $mult = 1;
-    $mult = int($range / (10 ** int(log($range) / log(10)))) if ($range >= 1); 
+    if ($range >= 1){
+	$mult = int($range / (10 ** int(log($range) / log(10))));
+	$mult = 2 ** int(log($mult) / log(2)); # make sure we get nearest power of 2 (downwards)
+	while ($mult > 0 && $range % $mult != 0){
+	    $mult = $mult >> 1;
+	}      
+	$mult = 1 if ($mult < 1);
+    }
+    
 
     # find the best bin size
     for ( my $bin_size = MIN_BIN_SIZE * $mult; $bin_size < $range; $bin_size *= BIN_MULTIPLE ) {
