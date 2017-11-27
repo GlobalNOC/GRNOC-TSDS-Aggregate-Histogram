@@ -62,12 +62,12 @@ is( $bins->{999}, 1, "1 items in bin 999" );
 
 
 # create a histogram with an odd natural resolution, ensure that 
-my $hist = GRNOC::TSDS::Aggregate::Histogram->new( hist_min => undef,
-                                                   hist_max => undef,
-                                                   data_min => 0,
-                                                   data_max => $twohundredgbps + $twohundredgbps*2.5, # 7 hundred gbps
-                                                   min_width => 0.001,
-                                                   resolution => $resolution );
+$hist = GRNOC::TSDS::Aggregate::Histogram->new( hist_min => undef,
+						hist_max => undef,
+						data_min => 0,
+						data_max => $twohundredgbps + $twohundredgbps*2.5, # 7 hundred gbps
+						min_width => 0.001,
+						resolution => $resolution );
 
 
 # verify initial values of histogram
