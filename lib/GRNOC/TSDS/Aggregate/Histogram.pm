@@ -251,18 +251,13 @@ sub _init_attribs {
     # determine desired number of bins based upon desired resolution
     my $desired_num_bins = 100 / $self->resolution();
 
-    # If we have say 600Gbps, we want to use a power of 10 multipled by the nearest
-    # cleanly divisible power of 2 (which is 4 in this example) to ensure we maintain a 
-    # consistent 10 aligned boundary but scaled up accordingly, while also ensuring
-    # that histograms generated from this will be combinable (all powers of 2 are combinable
-    # without edge cases)
+    # If we have say 600Gbps, we want to use a power of 10 multipled by 2
+    # to maintain a consistent 10 aligned boundary but scaled up accordingly, while also ensuring
+    # that histograms generated from this will be combinable (all powers of 10 and multiples of 2)
     my $mult = 1;
     if ($range >= 1){
 	$mult = int($range / (10 ** int(log($range) / log(10))));
-	$mult = 2 ** int(log($mult) / log(2)); # make sure we get nearest power of 2 (downwards)
-	while ($mult > 0 && $range % $mult != 0){
-	    $mult = $mult >> 1;
-	}      
+	$mult = 2 if ($mult > 1);
 	$mult = 1 if ($mult < 1);
     }
     

@@ -74,6 +74,6 @@ my $hist = GRNOC::TSDS::Aggregate::Histogram->new( hist_min => undef,
 is( $hist->data_min(), 0, 'data_min' );
 is( $hist->data_max(), $twohundredgbps + $twohundredgbps*2.5, 'data_max' );
 is( $hist->resolution(), 0.1, 'resolution' );
-is( $hist->num_bins(), 1750, 'num_bins' );
-is( $hist->bin_size(), $twohundredgbps / (100 / $resolution) * 2, 'bin_size' ); # bin size should be 400000000, ie best power of 10 * the multipler of nearest cleanly divisible power of 2
+is( $hist->num_bins(), 3500, 'num_bins' );
+is( $hist->bin_size(), $twohundredgbps / (100 / $resolution), 'bin_size' ); # bin size should be 200000000, ie best power of 10 * the multipler of nearest cleanly divisible power of 2
 is( $hist->total(), 0, 'total' );
