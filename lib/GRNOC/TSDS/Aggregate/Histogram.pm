@@ -5,7 +5,7 @@ use warnings;
 
 use XSLoader;
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 XSLoader::load( "GRNOC::TSDS::Aggregate::Histogram", $VERSION );
 
