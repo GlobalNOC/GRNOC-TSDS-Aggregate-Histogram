@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use lib './venv/lib/perl5';
+
 use Test::More tests => 45;
 
 use GRNOC::TSDS::Aggregate::Histogram;
