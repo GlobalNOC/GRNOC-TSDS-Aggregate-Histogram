@@ -1,0 +1,15 @@
+# carton snapshot format: version 1.0
+DISTRIBUTIONS
+  Math-Round-0.08
+    pathname: N/NE/NEILB/Math-Round-0.08.tar.gz
+    provides:
+      Math::Round 0.08
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      POSIX 0
+      parent 0
+      perl 5.006
+      strict 0
+      vars 0
+      warnings 0
